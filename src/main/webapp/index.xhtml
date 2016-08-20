@@ -4,28 +4,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"  >
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Welcome</title>
 </h:head>
 <h:body>
-    <h:form prependId="false">
-        <p:spinner/>
-        <h3>Please enter your name and password.</h3>
-        <table>
-            <tr>
-                <td>Name:</td>
-                <td><h:inputText value="#{user.name}" id="name"/></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><h:inputSecret value="#{user.password}" id="password"/></td>
-            </tr>
-        </table>
-        <p><h:commandButton value="Login">
-            <f:ajax execute="name password" render="out"/>
-        </h:commandButton></p>
-        <h3><h:outputText id="out" value="#{user.greeting}"/></h3>
+    <h:form id="form1" >
+        <p:dataTable id="table1" value="#{clientBean.smsList}" var="sms" paginator="true">
+            <p:column headerText="ID">#{sms.id}</p:column>
+            <p:column headerText="Name">#{sms.text}</p:column>
+        </p:dataTable>
+        <p:commandButton value="add" action="#{clientBean.add}" update="form1:table1"/>
+        <p:commandButton value="add2" action="#{clientBean.add2}" update="form1:table1"/>
+
     </h:form>
 </h:body>
 </html>
